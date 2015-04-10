@@ -1,0 +1,15 @@
+[user]
+	name = kunou
+	email = t-kunou@esm.co.jp
+[push]
+  default = simple
+[color]
+  ui = true
+  diff = true
+[pull]
+  rebase = true
+[alias]
+  l = log --decorate --oneline
+[core]
+	excludesfile = /Users/kunou/.gitignore
+	editor = vim -c \"set fenc=utf-8\"
