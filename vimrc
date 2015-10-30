@@ -88,6 +88,11 @@ NeoBundle 'Shougo/vimproc', {
 " VimからRSecを実行する
 NeoBundle "skwp/vim-rspec.git"
 
+" Clojure
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-classpath'
 
 " Quickrun
 NeoBundle 'thinca/vim-quickrun'
@@ -230,3 +235,9 @@ autocmd QuickFixCmdPost vimgrep cwindow
 "syntax enable
 "set background=dark
 "colorscheme solarized
+
+
+" for Clojure
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
