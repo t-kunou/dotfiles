@@ -54,7 +54,7 @@ alias gac='git add .; git commit -m'
 alias gl='git log'
 alias gpush='git push -u'
 alias gpull='git pull --prune'
-alias gbranchs='(for i in `git branch | colrm 1 2` ; do echo `git log --date=iso8601 -n 1 --pretty="format:[%ai] %h" $i` $i ; done) | sort -r'
+alias gbranches='(for i in `git branch | colrm 1 2` ; do echo `git log --date=iso8601 -n 1 --pretty="format:[%ai]@%h@%an@%s" $i`@$i ; done) | sort -r | awk -F"@" '\''{printf "%-30s ", $5; printf $1" "; printf $2" "; printf "%-15s ", $3; print $4}'\'''
 
 ## bundle commands alias
 alias be='bundle exec'
