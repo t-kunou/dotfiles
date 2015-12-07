@@ -51,7 +51,7 @@ alias gds='git diff --staged'
 alias ga='git add .'
 alias gc='git commit -m'
 alias gac='git add .; git commit -m'
-alias gl='git log'
+alias gl='git log --oneline'
 alias gpush='git push -u'
 alias gpull='git pull --prune'
 # これはAWKを別ファイルにすべきか…
@@ -61,7 +61,7 @@ BEGIN{
   printf "%-27s ", "LAST UPDATE";
   printf B"%-8s "N, " HASH";
   printf "%-15s ", "LAST COMMITER";
-  printf B"%-72s"N, "LAST COMMIT MESSAGE";
+  printf B"%-80s"N, "LAST COMMIT MESSAGE";
   print ""
 }
 {
@@ -69,7 +69,7 @@ BEGIN{
   printf B"%27s "N, $1;
   printf "%8s ", $2;
   printf B"%-15s "N, $3;
-  printf substr($4, 0, 70);
+  printf substr($4, 0, 40);
   print ""
 }'\'''
 
