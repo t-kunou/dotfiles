@@ -1,5 +1,6 @@
 set encoding=utf8
 set fileencoding=utf8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 set tabstop=2
 set autoindent
 set expandtab

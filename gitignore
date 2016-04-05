@@ -52,3 +52,9 @@ Session.vim
 
 # Intellij
 build/
+
+# stack
+.stack-work/
+
+# bygub
+.byebug_history
