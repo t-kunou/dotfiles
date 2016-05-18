@@ -56,7 +56,25 @@ alias gpush='git push -u'
 alias gpull='git pull --prune'
 alias gco='git checkout'
 # これはAWKを別ファイルにすべきか…
-alias gbranches='(for i in `git branch | colrm 1 2` ; do echo `git log --date=iso8601 -n 1 --pretty="format:%ai@%h@%an@%s" $i`@$i ; done) | sort -r | awk -v B=`tput setab 4` -v N=`tput setab 0` -F"@" '\''
+#alias gbranches='(for i in `git branch | colrm 1 2` ; do echo `git log --date=iso8601 -n 1 --pretty="format:%ai@@%h@@%an@@%s" $i`@@$i ; done) | sort -r | awk -v B=`tput setab 4` -v N=`tput setab 0` -F"@@" '\''
+#BEGIN{
+#  printf B"%-35s "N, "BRANCH NAME";
+#  printf "%-26s ", "LAST UPDATE";
+#  printf B"%-8s "N, " HASH";
+#  printf "%-15s ", "LAST COMMITER";
+#  printf B"%-80s"N, "LAST COMMIT MESSAGE";
+#  print ""
+#}
+#{
+#  printf "%-35s ", $5;
+#  printf B"%-26s "N, $1;
+#  printf "%8s ", $2;
+#  printf B"%-15s "N, $3;
+#  printf substr($4, 0, 40);
+#  print ""
+#}'\'''
+
+alias gbranches='(for i in `git for-each-ref --sort='-committerdate' --format="%(refname:short)" refs/heads/` ; do echo $i@@`git log --date=iso8601 -n 1 --pretty="format:%ai@@%h@@%an@@%s" $i` ; done) | awk -v B=`tput setab 4` -v N=`tput setab 0` -F"@@" '\''
 BEGIN{
   printf B"%-35s "N, "BRANCH NAME";
   printf "%-26s ", "LAST UPDATE";
@@ -66,11 +84,11 @@ BEGIN{
   print ""
 }
 {
-  printf "%-35s ", $5;
-  printf B"%-26s "N, $1;
-  printf "%8s ", $2;
-  printf B"%-15s "N, $3;
-  printf substr($4, 0, 40);
+  printf "%-35s ", $1;
+  printf B"%-26s "N, $2;
+  printf "%8s ", $3;
+  printf B"%-15s "N, $4;
+  printf substr($5, 0, 40);
   print ""
 }'\'''
 

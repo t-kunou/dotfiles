@@ -12,4 +12,4 @@
   l = log --decorate --oneline
 [core]
 	excludesfile = /Users/kunou/.gitignore
-	editor = vim -c \"set fenc=utf-8\"
+	editor = vim
