@@ -74,7 +74,7 @@ alias gco='git checkout'
 #  print ""
 #}'\'''
 
-alias gbranches='(for i in `git for-each-ref --sort='-committerdate' --format="%(refname:short)" refs/heads/` ; do echo $i@@`git log --date=iso8601 -n 1 --pretty="format:%ai@@%h@@%an@@%s" $i` ; done) | awk -v B=`tput setab 4` -v N=`tput setab 0` -F"@@" '\''
+alias gbranches='(for i in `git for-each-ref --sort='-committerdate' --format="%(refname:short)" refs/heads/` ; do echo $i@@`git log --date=iso8601 -n 1 --pretty="format:%ai@@%h@@%an@@%s" $i` ; done) | awk -v B=`tput setab 4` -v N=`tput setab 0` -v N2=`tput setab 236` -F"@@" '\''
 BEGIN{
   printf B"%-35s "N, "BRANCH NAME";
   printf "%-26s ", "LAST UPDATE";
@@ -84,11 +84,12 @@ BEGIN{
   print ""
 }
 {
-  printf "%-35s ", $1;
-  printf B"%-26s "N, $2;
+  normal = (NR%2==1) ? N : N2
+  printf normal"%-35s ", $1;
+  printf B"%-26s "normal, $2;
   printf "%8s ", $3;
-  printf B"%-15s "N, $4;
-  printf substr($5, 0, 40);
+  printf B"%-15s "normal, $4;
+  printf "%-80s", substr($5, 0, 40);
   print ""
 }'\'''
 
