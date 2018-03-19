@@ -58,3 +58,10 @@ build/
 
 # bygub
 .byebug_history
+
+# eclipse
+.metadata/
+.recommenders/
+#bin/
+
+nohup.out

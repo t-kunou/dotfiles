@@ -94,6 +94,7 @@ NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'tpope/vim-classpath'
+" NeoBundle 'vim-scripts/paredit.vim'
 
 " Quickrun
 NeoBundle 'thinca/vim-quickrun'
@@ -111,6 +112,7 @@ NeoBundle 'szw/vim-tags'
 " solarizedテーマの導入
 NeoBundle 'altercation/vim-colors-solarized'
 
+NeoBundle 'tpope/vim-fireplace'
 
 call neobundle#end()
    

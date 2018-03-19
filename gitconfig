@@ -13,3 +13,11 @@
 [core]
 	excludesfile = /Users/kunou/.gitignore
 	editor = vim
+	quotepath = false
+	precomposeunicode = true
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[diff]
+  indentHeuristic = true
