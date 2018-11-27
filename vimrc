@@ -114,16 +114,17 @@ NeoBundle 'altercation/vim-colors-solarized'
 
 NeoBundle 'tpope/vim-fireplace'
 
+"" ファイルオープンを便利に
+"NeoBundle 'Shougo/unite.vim'
+"" Unite.vimで最近使ったファイルを表示できるようにする
+"NeoBundle 'Shougo/neomru.vim'
+
 call neobundle#end()
    
 " Required:
 filetype plugin indent on
    
 
-"" ファイルオープンを便利に
-"NeoBundle 'Shougo/unite.vim'
-"" Unite.vimで最近使ったファイルを表示できるようにする
-"NeoBundle 'Shougo/neomru.vim'
 "
 """""""""""""""""""""""""""""""
 "" Unit.vimの設定
