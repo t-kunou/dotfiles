@@ -31,7 +31,7 @@ au VimEnter * silent! RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 
-let g:mapleader = '\' 
+let g:mapleader = '\'
 
 let g:netrw_liststyle = 3
 let g:netrw_altv = 1
@@ -67,7 +67,7 @@ Plug 'Shougo/vimshell', { 'rev' : '3787e5' }
 " インデントに色を付けて見やすくする
 Plug 'nathanaelkane/vim-indent-guides'
 
-Plug 'Shougo/neocomplcache'
+" Plug 'Shougo/neocomplcache'
 Plug 'szw/vim-tags'
 
 " solarizedテーマの導入
@@ -99,11 +99,37 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'gorodinskiy/vim-coloresque'
 
+Plug 'editorconfig/editorconfig-vim'
+
 " LSP
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 
+" JupyterNotebook
+Plug 'goerz/jupytext.vim'
+
+" JS/TS
+Plug 'prettier/vim-prettier'
+
+" es-lint
+Plug 'w0rp/ale'
+
+" find file
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
+
+" ALE の修正ツールとして ESLint を指定
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
+\}
+
+" 自動修正を有効化 (オプション: 保存時に修正)
+let g:ale_fix_on_save = 1
 
 let g:indent_guides_enable_on_vim_startup = 1 
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
@@ -115,6 +141,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
         \ }
+let NERDTreeShowHidden=1
 
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
@@ -138,16 +165,38 @@ let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 
 " grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+" nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,g  :Rg<CR>
+
+nnoremap <silent> ,f :Files<CR>
+nnoremap <silent> ,l :Buffers<CR>
 
 " LspHover
 nnoremap <silent> ,h  :LspHover<CR>
+" LspDefinition
+nnoremap <silent> ,d  :LspDefinition<CR>
+" LspNextError
+nnoremap <silent> ,e  :LspNextError<CR>
+" LspReferences
+nnoremap <silent> ,r  :LspReferences<CR>
+" LspCodeAction
+nnoremap <silent> ,a  :LspCodeAction<CR>
 
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ,q :call ToggleQuickfix()<CR>
+
+function! ToggleQuickfix()
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+  else
+    cclose
+  endif
+endfunction
+
+"" カーソル位置の単語をgrep検索
+" nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 " grep検索結果の再呼出
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+nnoremap <silent> ,v  :<C-u>UniteResume search-buffer<CR>
 
 " unite grep に ag(The Silver Searcher) を使う
 if executable('ag')
@@ -159,6 +208,22 @@ endif
 nmap & :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <space>/ :Ag
 
+" bufferの表示
 nnoremap <silent> ,b :<C-u> Unite buffer <CR>
 
+" ツリーの表示
 nnoremap <silent> ,n :NERDTreeToggle <CR>
+
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'plugins': {
+\           'pycodestyle': {
+\             'maxLineLength': 150
+\           }
+\         }
+\       }
+\     }
+\   }
+\ }
