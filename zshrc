@@ -29,9 +29,6 @@ export PATH="/usr/local/Cellar/node/9.11.1/bin:$PATH"
 ## bundle open on RubyMine
 export BUNDLER_EDITOR=mine
 
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/jre"
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home"
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -43,12 +40,10 @@ export PATH=$HOME/bin:$PATH
 export FPATH=/usr/local/share/zsh/site-functions/_lein:$FPATH
 
 ## ruby
-export BUNDLER_EDITOR='vim'
+#export BUNDLER_EDITOR='vim'
 
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=ja_JP.UTF-8 /usr/local/Cellar/macvim/8.0-145_2/bin/mvim -v "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /usr/local/Cellar/macvim/8.0-145_2/bin/mvim -v "$@"'
-alias mvim='env LANG=ja_JP.UTF-8 /usr/local/Cellar/macvim/8.0-145_2/bin/mvim -v "$@" &'
+## python
+export PATH="$HOME/.cargo/bin:$PATH"
 
 ## git
 export PATH=$PATH:/usr/local/share/git-core/contrib/diff-highlight
@@ -124,11 +119,12 @@ PATH=$HOME/.exenv/versions/1.3.3/bin:$PATH
 export BUNDLER_EDITOR=mine
 
 alias tmux='tmux -u'
+alias cd='pushd'
 
 # for Python
 export PYENV_ROOT=${HOME}/.pyenv
 if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/versions/3.6.3/bin:$PATH
+    export PATH=${PYENV_ROOT}/shims/bin:$PATH
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
@@ -139,14 +135,50 @@ export PATH=${HOME}/.local/bin:$PATH
 # for TreeTager
 export PATH=${HOME}/work/tree_tagger/cmd:${HOME}/work/tree_tagger/bin:$PATH
 
+# for Conda
+#export PATH=~/miniconda3/bin:$PATH
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/kunou/.sdkman"
 [[ -s "/Users/kunou/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/kunou/.sdkman/bin/sdkman-init.sh"
 
 export GOOGLE_APPLICATION_CREDENTIALS='/Users/kunou/Downloads/kunou-test-7d5b9c39b1de.json'
 
+prompt powerline
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kunou/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kunou/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kunou/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kunou/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kunou/work/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/kunou/work/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/kunou/work/t5x/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kunou/work/t5x/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kunou/work/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/kunou/work/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/kunou/work/t5x/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kunou/work/t5x/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export AWS_DEFAULT_PROFILE="esm-its"
+
+. "$HOME/.cargo/env"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/kunou/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
